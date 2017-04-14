@@ -59,8 +59,8 @@ Base.@deprecate_binding IsFastLinearIndex IsIndexLinear
 
 "Trait of all iterator types"
 @traitdef IsIterator{X}
-@generated function SimpleTraits.trait{X}(::Type{IsIterator{X}})
-    method_exists(start, Tuple{X}) ? :(IsIterator{X}) : :(Not{IsIterator{X}})
+function SimpleTraits.trait{X}(::Type{IsIterator{X}})
+    method_exists(start, Tuple{X}) ? IsIterator{X} : Not{IsIterator{X}}
 end
 
 end # module
